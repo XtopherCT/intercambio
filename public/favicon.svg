@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="boxGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e11d48"/>
+      <stop offset="100%" style="stop-color:#be123c"/>
+    </linearGradient>
+    <linearGradient id="ribbonGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fbbf24"/>
+      <stop offset="100%" style="stop-color:#f59e0b"/>
+    </linearGradient>
+  </defs>
+  <!-- Gift box base -->
+  <rect x="15" y="40" width="70" height="50" rx="5" fill="url(#boxGrad)"/>
+  <!-- Gift box lid -->
+  <rect x="10" y="30" width="80" height="15" rx="4" fill="url(#boxGrad)"/>
+  <!-- Vertical ribbon -->
+  <rect x="43" y="30" width="14" height="60" fill="url(#ribbonGrad)"/>
+  <!-- Horizontal ribbon -->
+  <rect x="10" y="33" width="80" height="10" fill="url(#ribbonGrad)"/>
+  <!-- Bow left -->
+  <ellipse cx="35" cy="25" rx="12" ry="10" fill="url(#ribbonGrad)"/>
+  <!-- Bow right -->
+  <ellipse cx="65" cy="25" rx="12" ry="10" fill="url(#ribbonGrad)"/>
+  <!-- Bow center -->
+  <circle cx="50" cy="28" r="8" fill="#f59e0b"/>
+  <!-- Sparkles -->
+  <circle cx="20" cy="15" r="3" fill="#fef3c7"/>
+  <circle cx="80" cy="20" r="2" fill="#fef3c7"/>
+  <circle cx="85" cy="55" r="2.5" fill="#fef3c7"/>
+</svg>

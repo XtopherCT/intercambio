@@ -11,7 +11,7 @@ export default function Layout({ children }) {
           <div className="header-icon">
             <Gift />
           </div>
-          <h1>Amigo Secreto</h1>
+          <h1>Amigo Secreto Conquistadores</h1>
           <p>Organiza tu intercambio de regalos</p>
         </header>
 
@@ -22,7 +22,7 @@ export default function Layout({ children }) {
         </main>
 
         <footer className="footer">
-          <p>Hecho con amor para intercambios navidenos</p>
+          <p>Hecho por Chizo</p>
         </footer>
       </div>
     </div>
