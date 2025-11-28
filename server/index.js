@@ -10,7 +10,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-const PORT = process.env.PORT || 3002;
+const PORT = process.env.PORT || 8099;
 const DB_PATH = path.join(__dirname, 'db.json');
 
 // Initialize DB file if it doesn't exist
