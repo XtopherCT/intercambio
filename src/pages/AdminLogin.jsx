@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Lock, ArrowLeft, ShieldCheck } from "lucide-react";
+import { Lock, ArrowLeft } from "lucide-react";
 import toast from "react-hot-toast";
 import Card from "../components/Card";
 import Button from "../components/Button";
@@ -22,14 +22,14 @@ export default function AdminLogin() {
       const data = await res.json();
       setIsInitialized(data.initialized);
     } catch {
-      toast.error("Error de conexion");
+      toast.error("Error de conexión");
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!password || password.length < 4) {
-      toast.error("La contrasena debe tener al menos 4 caracteres");
+      toast.error("La contraseña debe tener al menos 4 caracteres");
       return;
     }
 
@@ -47,7 +47,7 @@ export default function AdminLogin() {
           const data = await initRes.json();
           throw new Error(data.error);
         }
-        toast.success("Contrasena configurada correctamente");
+        toast.success("¡Contraseña configurada correctamente!");
       }
 
       const loginRes = await fetch("/api/admin/login", {
@@ -90,22 +90,28 @@ export default function AdminLogin() {
 
         <div className="auth-header">
           <div className="auth-icon">
-            <ShieldCheck />
+            <svg viewBox="0 0 100 100" width="56" height="56">
+              <circle cx="50" cy="50" r="45" fill="#0f766e"/>
+              <rect x="35" y="45" width="30" height="25" rx="3" fill="#fbbf24"/>
+              <rect x="40" y="35" width="20" height="15" rx="10" fill="none" stroke="#fbbf24" strokeWidth="4"/>
+              <circle cx="50" cy="57" r="4" fill="#0f766e"/>
+              <rect x="48" y="57" width="4" height="8" fill="#0f766e"/>
+            </svg>
           </div>
-          <h2>{isInitialized ? "Acceso Organizador" : "Configurar Acceso"}</h2>
+          <h2>{isInitialized ? "¡Bienvenido de vuelta!" : "¡Hola, organizador!"}</h2>
           <p>
             {isInitialized
-              ? "Ingresa tu contrasena para administrar"
-              : "Crea una contrasena para el organizador"}
+              ? "Ingresa tu contraseña para continuar"
+              : "Crea una contraseña para comenzar"}
           </p>
         </div>
 
         <form onSubmit={handleSubmit} className="auth-form">
           <Input
-            label="Contrasena"
+            label="Contraseña"
             type="password"
             icon={Lock}
-            placeholder={isInitialized ? "********" : "Minimo 4 caracteres"}
+            placeholder={isInitialized ? "Tu contraseña secreta" : "Mínimo 4 caracteres"}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             autoFocus

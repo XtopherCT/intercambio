@@ -14,7 +14,7 @@ import Select from '../components/Select';
 const tabs = [
   { id: 'participants', label: 'Participantes', icon: Users },
   { id: 'restrictions', label: 'Restricciones', icon: Ban },
-  { id: 'codes', label: 'Codigos', icon: Link2 }
+  { id: 'codes', label: 'Códigos', icon: Link2 }
 ];
 
 export default function AdminPanel() {
@@ -68,7 +68,7 @@ export default function AdminPanel() {
       if (!res.ok) throw new Error(data.error);
       setParticipants([...participants, data.participant]);
       setNewName('');
-      toast.success('Participante agregado');
+      toast.success('¡Participante agregado!');
     } catch (err) { toast.error(err.message); }
   };
 
@@ -102,7 +102,7 @@ export default function AdminPanel() {
       setRestrictions([...restrictions, { person1Id: person1, person2Id: person2 }]);
       setPerson1('');
       setPerson2('');
-      toast.success('Restriccion agregada');
+      toast.success('¡Restricción agregada!');
     } catch (err) { toast.error(err.message); }
   };
 
@@ -116,13 +116,13 @@ export default function AdminPanel() {
       setRestrictions(restrictions.filter(r =>
         !((r.person1Id === p1 && r.person2Id === p2) || (r.person1Id === p2 && r.person2Id === p1))
       ));
-      toast.success('Restriccion eliminada');
+      toast.success('Restricción eliminada');
     } catch { toast.error('Error eliminando restriccion'); }
   };
 
   const performDraw = async () => {
     if (participants.length < 2) { toast.error('Necesitas al menos 2 participantes'); return; }
-    if (!confirm('Realizar el sorteo?')) return;
+    if (!confirm('¿Realizar el sorteo?')) return;
     try {
       const res = await fetch('/api/admin/draw', {
         method: 'POST',
@@ -132,12 +132,12 @@ export default function AdminPanel() {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error);
       setDrawCompleted(true);
-      toast.success('Sorteo completado!');
+      toast.success('¡Sorteo completado con éxito!');
     } catch (err) { toast.error(err.message); }
   };
 
   const resetDraw = async () => {
-    if (!confirm('Resetear el sorteo?')) return;
+    if (!confirm('¿Estás seguro de resetear el sorteo?')) return;
     try {
       await fetch('/api/admin/reset', {
         method: 'POST',
@@ -150,8 +150,8 @@ export default function AdminPanel() {
   };
 
   const fullReset = async () => {
-    if (!confirm('BORRAR TODO?')) return;
-    if (!confirm('Estas seguro?')) return;
+    if (!confirm('¿BORRAR TODO?')) return;
+    if (!confirm('¿Estás seguro?')) return;
     try {
       await fetch('/api/admin/full-reset', {
         method: 'POST',
@@ -169,7 +169,7 @@ export default function AdminPanel() {
     navigator.clipboard.writeText(code);
     setCopiedCode(code);
     setTimeout(() => setCopiedCode(null), 2000);
-    toast.success('Codigo copiado');
+    toast.success('¡Código copiado!');
   };
 
   const logout = () => {
@@ -202,7 +202,7 @@ export default function AdminPanel() {
 
         <div className={"status-banner " + (drawCompleted ? "completed" : "pending")}>
           {drawCompleted ? (
-            <><CheckCircle2 /><span>Sorteo completado - Los participantes pueden ver sus asignaciones</span></>
+            <><CheckCircle2 /><span>Sorteo completado - Los participantes pueden ver sus asignaciónes</span></>
           ) : (
             <><Clock /><span>Pendiente - {participants.length} participante(s)</span></>
           )}
@@ -234,7 +234,7 @@ export default function AdminPanel() {
               )}
 
               {participants.length === 0 ? (
-                <div className="empty-state"><Users /><p>No hay participantes aun</p></div>
+                <div className="empty-state"><Users /><p>Aún no hay participantes</p></div>
               ) : (
                 <div className="participants-grid">
                   {participants.map((p) => (
@@ -301,15 +301,15 @@ export default function AdminPanel() {
 
           {activeTab === 'codes' && (
             <div className="tab-panel">
-              <div className="section-header"><h3>Codigos de Acceso</h3></div>
+              <div className="section-header"><h3>Códigos de Acceso</h3></div>
 
               <div className="info-box info">
                 <Link2 />
-                <p>Comparte estos codigos <strong>en privado</strong> con cada participante para que vean su asignacion.</p>
+                <p>Comparte estos códigos <strong>en privado</strong> con cada participante para que vean su asignación.</p>
               </div>
 
               {participants.length === 0 ? (
-                <div className="empty-state"><Link2 /><p>Agrega participantes para ver sus codigos</p></div>
+                <div className="empty-state"><Link2 /><p>Agrega participantes para ver sus códigos</p></div>
               ) : (
                 <div className="codes-grid">
                   {participants.map((p) => (

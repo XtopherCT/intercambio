@@ -22,7 +22,7 @@ export default function Layout({ children }) {
         </main>
 
         <footer className="footer">
-          <p>Hecho por Chizo</p>
+          <p>Hecho con cariño para ustedes por Chizo</p>
         </footer>
       </div>
     </div>

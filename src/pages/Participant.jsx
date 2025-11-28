@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ArrowLeft, Ticket, Gift, Clock, PartyPopper, Sparkles } from "lucide-react";
+import { ArrowLeft, Ticket, Gift, Clock, Sparkles } from "lucide-react";
 import toast from "react-hot-toast";
 import Card from "../components/Card";
 import Button from "../components/Button";
@@ -15,7 +15,7 @@ export default function Participant() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!code.trim()) {
-      toast.error("Ingresa tu codigo de acceso");
+      toast.error("Por favor, ingresa tu código de acceso");
       return;
     }
 
@@ -58,18 +58,26 @@ export default function Participant() {
 
           <div className="auth-header">
             <div className="auth-icon purple">
-              <Gift />
+              <svg viewBox="0 0 100 100" width="56" height="56">
+                <circle cx="50" cy="50" r="45" fill="#7c3aed"/>
+                <rect x="25" y="45" width="50" height="35" rx="4" fill="#fbbf24"/>
+                <rect x="20" y="38" width="60" height="12" rx="3" fill="#f59e0b"/>
+                <rect x="45" y="38" width="10" height="42" fill="#ef4444"/>
+                <ellipse cx="40" cy="32" rx="10" ry="8" fill="#ef4444"/>
+                <ellipse cx="60" cy="32" rx="10" ry="8" fill="#ef4444"/>
+                <circle cx="50" cy="35" r="6" fill="#dc2626"/>
+              </svg>
             </div>
-            <h2>Ver mi Amigo Secreto</h2>
-            <p>Ingresa el codigo que te compartio el organizador</p>
+            <h2>¡Hola, amigo!</h2>
+            <p>Ingresa el código que te compartió el organizador</p>
           </div>
 
           <form onSubmit={handleSubmit} className="auth-form">
             <Input
-              label="Codigo de Acceso"
+              label="Código de Acceso"
               type="text"
               icon={Ticket}
-              placeholder="ABC12345"
+              placeholder="Ej: ABC12345"
               value={code}
               onChange={(e) => setCode(e.target.value.toUpperCase())}
               maxLength={8}
@@ -83,7 +91,7 @@ export default function Participant() {
               fullWidth
               loading={loading}
             >
-              Ver mi Asignacion
+              Ver mi Asignación
             </Button>
           </form>
         </Card>
@@ -91,14 +99,21 @@ export default function Participant() {
         <Card className="result-card">
           <button onClick={reset} className="back-btn">
             <ArrowLeft />
-            <span>Usar otro codigo</span>
+            <span>Usar otro código</span>
           </button>
 
           <div className="result-header">
             <div className="result-icon">
-              <PartyPopper />
+              <svg viewBox="0 0 100 100" width="64" height="64">
+                <circle cx="50" cy="50" r="45" fill="#059669"/>
+                <path d="M30 55 L45 70 L75 35" stroke="#fff" strokeWidth="8" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
+                <circle cx="25" cy="25" r="4" fill="#fbbf24"/>
+                <circle cx="80" cy="30" r="3" fill="#fbbf24"/>
+                <circle cx="75" cy="75" r="3" fill="#fbbf24"/>
+                <circle cx="20" cy="70" r="2" fill="#fbbf24"/>
+              </svg>
             </div>
-            <h2>Hola, {result.name}!</h2>
+            <h2>¡Hola, {result.name}!</h2>
           </div>
 
           {result.drawCompleted && result.assignment ? (
@@ -110,19 +125,19 @@ export default function Participant() {
                 <Sparkles />
               </div>
               <div className="assignment-content">
-                <p className="assignment-label">Tu amigo secreto es</p>
+                <p className="assignment-label">Tu amigo secreto es...</p>
                 <p className="assignment-name">{result.assignment}</p>
                 <div className="assignment-badge">
                   <Gift />
-                  <span>Prepara un gran regalo!</span>
+                  <span>¡Prepárale un lindo regalo!</span>
                 </div>
               </div>
             </div>
           ) : (
             <div className="waiting-box">
               <Clock />
-              <p>El sorteo aun no se ha realizado</p>
-              <p>Vuelve mas tarde cuando el organizador complete el sorteo.</p>
+              <p>El sorteo aún no se ha realizado</p>
+              <p>Vuelve más tarde cuando el organizador complete el sorteo.</p>
             </div>
           )}
         </Card>
